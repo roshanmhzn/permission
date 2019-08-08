@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% if request.user.is_superuser %}
+<h3>Total Users in the site</h3>
+{% for user in users %}
+<ul>
+    <li>
+        {{user}}
+    </li>
+</ul>
+{% endfor %}
+{% endif %}
+
+{% for post in all_post_list %}
+<div class="post-entry">
+    <h2>
+        <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
+        {% if request.user.is_superuser %}
+        <small style="color: grey; font-size:12px">Created by: {{post.user}}</small>
+        {% endif %}
+    </h2>
+    <p>{{ post.body }}</p>
+</div>
+{% endfor %}
+{% endblock content %}

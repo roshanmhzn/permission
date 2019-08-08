@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Edit post</h1>
+
+<!-- {% if perms.myapp.can_make_flutter_effect %}
+<p>yes you can make flutter effect</p>
+{% else %}
+<p>not good</p>
+{% endif %} -->
+
+{{ perms.myapp.can_make_flutter_effect }}
+
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update" />
+</form>
+{% endblock content %}
